@@ -1,0 +1,18 @@
+---
+- name: Install docker & docker-compose
+  become: yes
+  package:
+    name: "{{ item }}"
+  with_items:
+    - docker
+    - docker-compose
+  tags:
+    - devtools
+    - docker
+
+- name: Install docker-credential-secretservice
+  aur:
+    name: docker-credential-secretservice
+  tags:
+    - devtools
+    - docker

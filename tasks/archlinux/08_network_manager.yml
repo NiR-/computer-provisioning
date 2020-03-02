@@ -1,0 +1,22 @@
+---
+- name: Install the NetworkManager
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - networkmanager
+    - network-manager-applet
+    - networkmanager-openvpn
+  tags:
+    - networkmanager
+
+- name: Enable NetworkManager service
+  become: yes
+  systemd:
+    name: NetworkManager.service
+    enabled: yes
+    state: started
+    masked: no
+  tags:
+    - networkmanager
